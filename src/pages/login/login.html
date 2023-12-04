@@ -1,0 +1,74 @@
+<ion-content overflow-scroll='true' padding>
+
+  <ion-grid>
+    <div class='image-content' *ngIf='!keyboard.isOpen()'>
+      <ion-row>
+        <ion-col text-center>
+          <img src="../../assets/imgs/vouplan-login.png" class='login-image'>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center class='slider-text'>
+          <div class="ms-slider">
+            <ul class="ms-slider__words">
+              <li class="ms-slider__word">Attract potential customers</li>
+              <li class="ms-slider__word">E-orders from dine-in & online</li>
+              <li class="ms-slider__word">Receive table reservations</li>
+              <!-- This last word needs to duplicate the first one to ensure a smooth infinite animation -->
+              <li class="ms-slider__word">Attract potential customers</li>
+            </ul>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row>
+      <ion-col class='input-content' no-padding>
+        <ion-row>
+          <ion-col>
+            <ion-input class='user-input' [(ngModel)]='usernameInput' placeholder='Username' [attr.maxlength]='15'>
+            </ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input class='user-input' type='password' [(ngModel)]='passwordInput' placeholder='Password'
+              [attr.maxlength]='15'>
+            </ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button [ngClass]="{'sendButton': checkValid(), 'sendButton-disabled': !checkValid()}"
+              [disabled]='!checkValid() || needSpinner' (click)='login()'>
+              <ng-container *ngIf='!needSpinner'>
+                <span class='sendButton-text'>Login</span>
+              </ng-container>
+              <ng-container *ngIf='needSpinner'>
+                <ion-spinner></ion-spinner>
+              </ng-container>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ng-container *ngIf='!keyboard.isOpen()'>
+      <ion-row>
+        <ion-col class='bottom-content'>
+          <ion-row>
+            <ion-col text-center no-padding class='clickable-first-row'>
+              <span class='clickable-text'>By signing in, you agree to our</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center no-padding>
+              <span tappable class='clickable-link' (click)='presentTermPicker()'>Terms and conditions</span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+
+</ion-content>

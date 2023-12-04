@@ -1,0 +1,147 @@
+page-home-detail {
+
+  * {
+    @include my-font();
+  }
+
+  .header-md::after {
+    background-image: none !important;
+  }
+
+  .nav {
+    background-color: white;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .header-title {
+    padding-left: 0.4em;
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .nav-icon {
+    color: $GREY_ICON_WHITE_DARKER;
+    font-size: 1.5em;
+  }
+
+  .nav-button1 {
+    margin: 0;
+    width: 3em;
+    position: absolute;
+    top: -1em;
+    right: 0.2em;
+  }
+
+  // Main buttons
+  .center-row {
+    text-align: center;
+  }
+
+  .left-button {
+    height: 7em;
+    width: 7em;
+    border-radius: 4em;
+    text-align: center;
+    background-color: $YELLOW_MAIN_BOTTOM;
+    @include my-custom-shadow-obvious($YELLOW_MAIN_BOTTOM);
+  }
+
+  .right-button {
+    height: 7em;
+    width: 7em;
+    border-radius: 4em;
+    background-color: $GREEN_MAIN_BUTTON;
+    @include my-custom-shadow-obvious($GREEN_MAIN_BUTTON);
+  }
+
+  .main-icon {
+    font-size: 3.5em;
+  }
+
+  .main-text {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  // Super tabs
+  .selected {
+    color: $GRADIENT_BOTTOM;
+    -webkit-text-fill-color: $GRADIENT_TOP;
+  }
+
+  .text,
+  .text-md {
+    font-weight: 400 !important;
+    font-size: 1.1em;
+  }
+
+  .tab-buttons-container .tab-buttons super-tab-button:not(.selected) {
+    opacity: 0.8 !important;
+  }
+
+  .super-tab {
+    background-color: white !important;
+    border-top: 1px solid $GREY_BORDER_LINE;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+    height: 100%;
+    width: 100%;
+    @include card-no-shadow();
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+  }
+
+  super-tabs-toolbar>ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .tab-buttons super-tab-button {
+    min-width: auto;
+    overflow-y: auto;
+  }
+
+  super-tabs-toolbar>ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button {
+    text-transform: none;
+  }
+
+  .tab {
+    display: inline-block;
+    min-width: 9em;
+    width: auto;
+    color: black !important;
+  }
+
+  .badge {
+    padding: 2px 5px !important;
+    top: 0.3em !important;
+    right: 0.5em !important;
+    -webkit-text-fill-color: white !important;
+  }
+
+  .notification-badge {
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 4em;
+    position: absolute;
+    right: 0.55em;
+    top: -0.8em;
+    @include my-gradient($RED_BADGE_TOP, $RED_BADGE_BOTTOM);
+    @include my-custom-shadow-blur($RED_BADGE_SHADOW);
+  }
+
+  .reservation-notification-badge {
+    font-size: 0.9em;
+    color: white;
+    position: absolute;
+    top: 13.55em;
+    left: 66%;
+    padding-left: 0.4em;
+    padding-top: 0.15em;
+    z-index: 12;
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 50%;
+    @include my-gradient($DINE_IN_ORANGE_TOP, $DINE_IN_ORANGE_BOTTOM);
+    @include my-custom-shadow-blur($DINE_IN_ORANGE_BOTTOM);
+  }
+}

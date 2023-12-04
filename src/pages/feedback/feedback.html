@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-grid class='nav'>
+    <ion-row justify-content-center align-items-center>
+      <ion-col>
+        <ion-label class='header-title'>Customer's Feedback</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content overflow-scroll='true' class='master'>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Pull to check new feedback :)"></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Feedback card -->
+  <ng-container *ngFor='let item of feedbackList'>
+    <ion-grid class='card-grid'>
+      <ion-card tappable class='notification-card' (click)="goToFeedbackDetails(item._id)">
+        <ion-row>
+          <ion-col class='left-content'>
+            <div class="image-box" [ngStyle]="{'background-color': item.bgColor}">
+              <span class="image-text">{{item.char}}</span>
+            </div>
+          </ion-col>
+          <ion-col class='right-content'>
+            <ion-row>
+              <ion-col col-8>
+                <span>{{ item.username }}</span>
+                <span class="rating">
+                  <span class="rating-value">{{ item.rating }}</span>
+                  <ion-icon class="rating-icon" name="custom-star"></ion-icon>
+                </span>
+              </ion-col>
+              <ion-col class='time'>{{item.time}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class='text-content' col-9>{{item.content}}</ion-col>
+              <ng-container *ngIf="!item.replyStatus">
+                <ion-col>
+                  <button class="reply-button" (click)="goToFeedbackDetails(item._id)" [disabled]='needSpinner'
+                    ion-button no-margin>
+                    <ion-icon name='custom-send'></ion-icon>
+                  </button>
+                </ion-col>
+              </ng-container>
+              <ng-container *ngIf="item.replyStatus">
+                <ion-col class='status-text status-tick'>
+                  <ion-icon name='custom-tick'></ion-icon>
+                </ion-col>
+              </ng-container>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-grid>
+  </ng-container>
+
+  <ng-container *ngIf='!feedbackList.length'>
+    <span class='image-box-center'>
+      <img src="../../assets/imgs/no-feedback-vouplan.png" class='center-image'>
+    </span>
+  </ng-container>
+
+  <ion-infinite-scroll [enabled]="needInfiniteScroll" (ionInfinite)="loadMore($event)" loadingSpinner="bubbles">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

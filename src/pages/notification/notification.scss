@@ -1,0 +1,181 @@
+page-notification {
+
+  .master {
+    background-color: $GREY_BODY_BACKGROUND;
+  }
+
+  .scroll-content {
+    padding-top: 0.8em;
+  }
+
+  // Filter toggle
+  .toggle-grid {
+    padding: 0.1em 1.9em 0 2.9em;
+  }
+
+  .list-md {
+    margin-bottom: 0.5em;
+  }
+
+  .item-md {
+    border-radius: 0.5em;
+  }
+
+  .item-list {
+    padding: 0;
+  }
+
+  .item-text {
+    color: $GREY_TEXT_WHITE_DARKER;
+  }
+
+  .item-inner {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  // Card content
+  .card-grid {
+    padding-left: 2em;
+    padding-right: 2.8em;
+  }
+
+  .notification-card {
+    width: 100%;
+    height: 6em;
+    float: right;
+    border-radius: 0.5em;
+    margin: 0 1em 0 1em;
+    z-index: 1;
+    overflow: visible;
+    @include card-no-shadow();
+  }
+
+  .left-content {
+    max-width: 2.5em;
+    padding-top: 0.7em;
+  }
+
+  .image-box {
+    position: absolute;
+    left: -2em;
+    text-align: center;
+    width: 4.5em;
+    height: 4.5em;
+    border-radius: 2.5em;
+    @include my-img-shadow();
+  }
+
+  .image-disabled {
+    @include my-custom-shadow($GREY_TEXT_WHITE);
+  }
+
+  .image-text {
+    position: relative;
+    top: 0.32em;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+  }
+
+  .right-content {
+    height: 6em;
+    padding-top: 0.5em;
+  }
+
+  .title {
+    font-size: 1.1em;
+    color: $GREY_TEXT_WHITE_DARKER;
+    width: 5em;
+    @include text-truncate();
+  }
+
+  .time {
+    font-size: 1.1em;
+    color: $GREY_TEXT_WHITE_DARKER;
+    text-align: right;
+    padding-right: 1em;
+    @include text-truncate();
+  }
+
+  .text-content {
+    font-weight: 400;
+    font-size: 1.3em;
+    padding-top: 0.7em;
+    padding-left: 0.4em;
+    height: 2em;
+    max-width: 100%;
+    @include text-truncate-line(1);
+  }
+
+  .menu-more-icon {
+    position: absolute;
+    right: 29%;
+    top: 0.9em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .disabled {
+    font-weight: 200;
+    color: $GREY_TEXT_WHITE;
+  }
+
+  .cross {
+    color: $GREY_ICON_WHITE_DARKER;
+    max-width: 17%;
+    padding-top: 1em;
+  }
+
+  .tick {
+    color: $GREEN_MAIN_BUTTON;
+    max-width: 17%;
+    font-size: 1.4em;
+    padding-top: 0.55em;
+    padding-right: 0.3em;
+  }
+
+  .status-text {
+    color: $GREY_ICON_WHITE;
+  }
+
+  .status-tick {
+    font-size: 1.2em;
+    position: relative;
+    top: 0.7em;
+  }
+
+  .status-cross {
+    position: relative;
+    top: 0.7em;
+    left: 0.1em;
+  }
+
+  .status-cancel {
+    font-size: 1.2em;
+    position: relative;
+    top: 0.48em;
+  }
+
+  // hint section
+  .hint-content {
+    margin-top: 3em;
+  }
+
+  .main-hint-text {
+    font-size: 1.4em;
+    text-align: center;
+    line-height: 1.5em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .sub-hint-text {
+    font-size: 1em;
+    text-align: center;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  // Space area
+  .space {
+    height: 13em;
+  }
+}

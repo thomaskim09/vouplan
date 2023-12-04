@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-grid class='nav'>
+    <ion-row justify-content-center align-items-center>
+      <ion-col col-10>
+        <ion-label class='header-title'>{{restaurantName}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <span *ngIf='hasNotifications' class='notification-badge'></span>
+        <button class='nav-button1' (click)='presentMenu()' ion-button icon-only clear>
+          <ion-icon class='nav-icon' name='custom-three-dots'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-header>
+
+<ion-content overflow-scroll='true'>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row class='center-row'>
+          <ion-col>
+            <button class='left-button' (click)='insertCode()' ion-button icon-only>
+              <ion-icon class='main-icon' name="custom-insert-code"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class='main-text'>Enter Code</ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-col class='center-row'>
+            <button class='right-button' (click)='scanQr()' ion-button icon-only>
+              <ion-icon class='main-icon' name="custom-scan-qr"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class='main-text'>Scan QR</ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <span *ngIf='reservationStatusCounter !== 0'
+      class='reservation-notification-badge'>{{ reservationStatusCounter }}</span>
+  </ion-grid>
+
+  <ng-container *ngIf='pageInfo'>
+    <super-tabs class='super-tab' toolbarBackground='white' indicatorColor='primary' scrollTabs=true
+      (tabSelect)="onTabSelect($event)">
+      <ng-container *ngFor='let item of pageInfo; let i=index'>
+        <super-tab class='tab' [root]='page' [id]='item.categoryId' [rootParams]='item' title='{{item.categoryName}}'>
+        </super-tab>
+      </ng-container>
+    </super-tabs>
+  </ng-container>
+
+</ion-content>

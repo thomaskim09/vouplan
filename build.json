@@ -1,0 +1,18 @@
+{
+  "android": {
+    "debug": {
+      "keystore": "vouplan.keystore",
+      "storePassword": "Thomas0921@",
+      "alias": "vouplan",
+      "password": "Thomas0921@",
+      "keystoreType": ""
+    },
+    "release": {
+      "keystore": "vouplan.keystore",
+      "storePassword": "Thomas0921@",
+      "alias": "vouplan",
+      "password": "Thomas0921@",
+      "keystoreType": ""
+    }
+  }
+}

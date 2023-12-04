@@ -1,0 +1,58 @@
+<ion-content overflow-scroll='true' class='master'>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Pull to refresh menu"></ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container *ngIf="tabId === 'M'">
+    <ng-container *ngFor='let category of foodList; let i=index'>
+      <div class='header-text' [innerHTML]='category.categoryName'></div>
+      <ion-grid class='card-grid'>
+        <ion-list>
+          <ng-container *ngFor='let item of category.itemList; let j=index'>
+            <ion-item class='item-list'>
+              <ion-label [innerHTML]='item.itemName'></ion-label>
+              <ion-toggle (ionChange)="toggleFood($event, item._id, i, j)" [checked]="getStatus(item.status)"
+                [disabled]='needSpinner'>
+              </ion-toggle>
+            </ion-item>
+          </ng-container>
+        </ion-list>
+      </ion-grid>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="tabId === 'C'">
+    <ion-grid class='card-grid' *ngIf="categoryList && categoryList.length">
+      <ion-list>
+        <ng-container *ngFor='let item of categoryList; let i=index'>
+          <ion-item class=' item-list'>
+            <ion-label [innerHTML]='item.categoryName'></ion-label>
+            <ion-toggle (ionChange)="toggleCategory($event, item._id, i)" [checked]="getStatus(item.status)"
+              [disabled]='needSpinner'>
+            </ion-toggle>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-grid>
+  </ng-container>
+
+  <ng-container *ngIf="tabId === 'V'">
+    <ion-grid class='card-grid' *ngIf="voucherList && voucherList.length">
+      <ion-list>
+        <ng-container *ngFor='let item of voucherList; let i=index'>
+          <ion-item class=' item-list'>
+            <ion-label>
+              <span *ngIf="checkIfStatusSO(item.status, item.details.soldOutTime)"> (Sold Out)</span>
+              <span [innerHTML]='item.details.voucherName'></span>
+            </ion-label>
+            <ion-toggle (ionChange)="toggleVoucher($event, item._id, item)" [checked]="voucherChecked(item.status)"
+              [disabled]='needSpinner'>
+            </ion-toggle>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-grid>
+  </ng-container>
+
+</ion-content>

@@ -1,0 +1,156 @@
+confirm-order-button {
+
+  ion-grid {
+    z-index: 5;
+    position: fixed;
+    bottom: 3.3em;
+  }
+
+  .middle-tab {
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .list-caret-up {
+    font-size: 1.6em;
+    color: $GREY_ICON_WHITE_DARKER;
+    margin: 0.35em 0 0.8em 0;
+  }
+
+  .list-caret-down {
+    font-size: 1.6em;
+    color: $GREY_ICON_WHITE_DARKER;
+    margin: 0.35em 0;
+  }
+
+  .item-block {
+    min-height: 0 !important;
+  }
+
+  .list-md .item-block .item-inner {
+    border-bottom: none !important;
+  }
+
+  ion-label {
+    margin: 0.09em !important;
+  }
+
+  .orderInfo {
+    padding-bottom: 1em;
+  }
+
+  .sub-item-text {
+    color: $GREY_TEXT_WHITE_DARKER;
+    font-size: 1.05em;
+    font-weight: 200;
+  }
+
+  .sub-item-price {
+    color: $GREY_TEXT_WHITE_DARKER;
+    font-size: 1.05em;
+    font-weight: 200;
+    position: absolute;
+    right: 1.2em;
+    text-align: right;
+  }
+
+  .main-sub-item-text {
+    font-size: 1.05em;
+    font-weight: 400;
+  }
+
+  .main-sub-item-price {
+    font-size: 1.05em;
+    font-weight: 400;
+    position: absolute;
+    right: 1.2em;
+    text-align: right;
+  }
+
+  .bottom-tab {
+    background-color: white;
+    min-height: 4.4em;
+    max-height: 4.4em;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .done-button {
+    border-radius: 15em;
+    margin-bottom: 0.2em;
+    margin-right: 1em;
+    height: 3.3em;
+    width: 92%;
+    float: right;
+    background-color: $DINE_IN_ORANGE_TOP;
+    @include my-custom-shadow($DINE_IN_ORANGE_TOP);
+  }
+
+  .get-button {
+    border-radius: 15em;
+    margin-bottom: 0.2em;
+    margin-right: 1em;
+    height: 3.3em;
+    width: 92%;
+    float: right;
+    @include my-img-shadow-blur();
+  }
+
+  .get-button-text {
+    font-size: 1.8em;
+    font-weight: 400;
+    padding-top: 1em;
+    padding-bottom: 1.1em;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    text-transform: capitalize;
+  }
+
+  .tick-icon {
+    font-size: 1.5em;
+    position: relative;
+    left: 0.25em;
+  }
+
+  .cross-icon {
+    font-size: 1.8em;
+    color: $GREY_ICON_WHITE;
+  }
+
+  .delete-icon {
+    font-size: 1.8em;
+    color: $GRADIENT_TOP;
+  }
+
+  .edit-icon {
+    font-size: 1.8em;
+    color: $GREY_ICON_WHITE;
+    position: relative;
+    right: 0.5em;
+  }
+
+  .status-text {
+    font-size: 1.5em;
+    color: $GREY_ICON_WHITE;
+    @include text-truncate-line(2);
+  }
+
+  .main-item-text {
+    color: $GRADIENT_TOP;
+    font-size: 1.7em;
+    font-weight: 500;
+    padding-left: 0.7em !important;
+  }
+
+  .main-item-price {
+    color: $GRADIENT_TOP;
+    font-size: 1.7em;
+    font-weight: 500;
+    text-align: right;
+    padding-right: 0.7em !important;
+  }
+
+}

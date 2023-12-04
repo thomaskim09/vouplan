@@ -1,0 +1,111 @@
+page-setting {
+
+  * {
+    @include my-font();
+  }
+
+  .header-md::after {
+    background-image: none !important;
+  }
+
+  .nav {
+    padding: 0;
+    background-color: white;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .back-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .back-icon {
+    width: 1.5em;
+  }
+
+  .nav-icon {
+    font-size: 1.5em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .header-title {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .master {
+    background-color: $GREY_BODY_BACKGROUND;
+  }
+
+  // card content
+
+  .card {
+    border-radius: 0.5em;
+    padding: 0.5em;
+    width: 90%;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    @include card-no-shadow();
+  }
+
+  .icon-col-tl {
+    border-right: 1px solid $GREY_BORDER_LINE;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .icon-col-tr {
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .coffee-icon {
+    color: $GRADIENT_TOP;
+    font-size: 2.5em;
+  }
+
+  .document-icon {
+    color: $GREEN_ICON;
+    font-size: 2.2em;
+    margin-top: 0.15em;
+  }
+
+  .messenger-icon {
+    color: $MESSENGER_BLUE;
+    font-size: 2.15em;
+    margin-top: 0.15em;
+  }
+
+  .icon-col {
+    padding-top: 0.7em;
+  }
+
+  .text-col {
+    font-size: 1.2em;
+    text-align: center;
+    padding-bottom: 0.7em;
+  }
+
+  .text-col2 {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  // list card
+  .item-icon {
+    font-size: 1.2em;
+    color: $GREY_ICON_WHITE_DARKER;
+    margin: 0.3em 1em 0.3em 0.3em !important;
+  }
+
+  .item-label-toggle {
+    margin: 0.3em 1em 0.3em 0.3em !important;
+  }
+
+  .line {
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .item-label {
+    margin: 0.3em;
+  }
+}

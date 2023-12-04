@@ -1,0 +1,10 @@
+  <ion-fab class='call-up' [ngClass]="{'call-up': !toggle, 'call-up-push': toggle}" bottom right>
+    <button class='fab-main-button' (click)='notifyUser()' [disabled]='notifyClicked' ion-fab>
+      <ng-container *ngIf='notifyClicked'>
+        <span class='count-down'>{{countDownNotify}}</span>
+      </ng-container>
+      <ng-container *ngIf='!notifyClicked'>
+        <ion-icon class='fab-main-icon' name='custom-notification'></ion-icon>
+      </ng-container>
+    </button>
+  </ion-fab>

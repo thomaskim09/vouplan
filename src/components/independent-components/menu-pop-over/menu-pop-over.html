@@ -1,0 +1,32 @@
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item tappable (click)='goToNotification()'>
+          <ion-icon name='custom-notification'></ion-icon>
+          <span *ngIf='hasNotifications' class='notification-badge'></span>
+          <span class='item-text'>Notifications</span>
+        </ion-item>
+        <ng-container *ngIf="feature === '3'">
+          <ion-item tappable (click)='goToReservation()'>
+            <ion-icon class='item-icon' name='custom-reservation'></ion-icon>
+            <span class='item-text'>Table Notice</span>
+          </ion-item>
+        </ng-container>
+        <ion-item tappable (click)='goToToggle()'>
+          <ion-icon class='item-icon' name='custom-toggle-outline'></ion-icon>
+          <span class='item-text'>Controller</span>
+        </ion-item>
+        <ion-item tappable (click)='goToReport()'>
+          <ion-icon class='item-icon' name='custom-question'></ion-icon>
+          <span class='item-text'>Report Error</span>
+        </ion-item>
+        <ion-item tappable (click)='goToSetting()'>
+          <ion-icon class='item-icon' name='custom-setting'></ion-icon>
+          <span class='item-text'>Settings</span>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<div tappable class='pop-over-background' (click)='close()'></div>

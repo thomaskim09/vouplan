@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-grid class='nav'>
+    <ion-row justify-content-center align-items-center>
+      <ion-col class='back-col' col-1>
+        <button (click)="back()" ion-button no-padding no-margin clear>
+          <ion-icon class="nav-icon back-icon" name="custom-back"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <ion-label class='header-title'>Feedback's Details</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content overflow-scroll='true' class='master'>
+
+  <ng-container *ngIf="feedback">
+    <ion-card class="card">
+      <ion-row>
+        <ion-col class="right-content">
+          <ion-row>
+            <ion-col col-8 class="top-col">
+              <span class="username">{{ feedback.username }}</span>
+              <span class="rating">
+                <span class="rating-value">{{ feedback.rating }}</span>
+                <ion-icon class="rating-icon" name="custom-star"></ion-icon>
+              </span>
+            </ion-col>
+            <ion-col class='time'>
+              <span class="feedback-time">{{ getTime(feedback.feedbackTime) }}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="middle-col">
+            <ion-col no-padding> {{ feedback.content }} </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="image-upload-box" *ngFor="let photo of feedback.photos; let i=index">
+                <img tappable class="image-uploaded" [src]="photo" (click)='presentImage(feedback, i)' />
+              </span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col no-padding>
+              <ion-icon class="voucher-icon" name="custom-voucher"></ion-icon>
+              <span class="voucher-text">{{ feedback.voucherName }}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col no-padding>
+              <ion-row>
+                <ion-col class="restaurant-reply-title">
+                  Restaurant's reply
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ng-container *ngIf="feedback.replyStatus">
+                  <ion-col class="restaurant-reply-content" [innerHTML]='feedback.replyContent'></ion-col>
+                </ng-container>
+                <ng-container *ngIf="!feedback.replyStatus">
+                  <ion-col>
+                    <ion-textarea maxLength="180" class='reply-input' [(ngModel)]='replyModel'
+                      placeholder="Your reply :)"></ion-textarea>
+                  </ion-col>
+                </ng-container>
+              </ion-row>
+              <ion-row>
+                <ion-col class='text-hint'>
+                  <ng-container *ngIf='replyModel'>
+                    <span>{{replyModel.length}}/180</span>
+                  </ng-container>
+                </ion-col>
+              </ion-row>
+              <ng-container *ngIf="!feedback.replyStatus">
+                <ion-row>
+                  <ion-col class='button-col'>
+                    <button [ngClass]="{'reply-button': replyModel, 'reply-button-disable': !replyModel}"
+                      (click)='sendReply()' [disabled]='needSpinner' ion-button no-margin>
+                      <ng-container *ngIf='!needSpinner'>
+                        <ion-icon name='custom-send'></ion-icon>
+                      </ng-container>
+                      <ng-container *ngIf='needSpinner'>
+                        <ion-spinner></ion-spinner>
+                      </ng-container>
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ng-container>
+
+</ion-content>

@@ -1,0 +1,32 @@
+<ng-container *ngIf='item && item.itemContent'>
+  <ion-content overflow-scroll='true' class='master'>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingText="Pull to refresh all orders :)"></ion-refresher-content>
+    </ion-refresher>
+
+    <confirm-order-main [menu]='menu' [orderContent]='orderContent' [responseDetails]='responseDetails'>
+    </confirm-order-main>
+
+    <div class='space'></div>
+  </ion-content>
+
+  <ng-container *ngIf="menu.cd.hasNotifyService && (status === 'CF' || status === 'AC') && userToken">
+    <order-call [orderContent]='orderContent' [toggle]='toggle'></order-call>
+  </ng-container>
+
+  <ion-footer>
+    <confirm-order-button [menu]='menu' [orderContent]='orderContent' (response)='emitResponse($event)'
+      (toggle)='emitToggle($event)'> </confirm-order-button>
+  </ion-footer>
+</ng-container>
+
+<ng-container *ngIf='!item || !item.itemContent'>
+  <ion-content overflow-scroll='true' class='master'>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <span class='imageBox'>
+      <img src="../../assets/imgs/no-order.png" class='statusImage'>
+    </span>
+  </ion-content>
+</ng-container>

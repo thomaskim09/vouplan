@@ -1,0 +1,33 @@
+order-call {
+
+  .call-up {
+    bottom: 7.5em !important;
+    right: 1em;
+  }
+
+  .call-up-push {
+    bottom: 17em !important;
+    right: 1em;
+  }
+
+  .fab-main-button {
+    color: white;
+    width: 3em;
+    height: 3em;
+    @include my-gradient($GRADIENT_TOP, $GRADIENT_BOTTOM);
+    @include my-img-shadow-blur();
+  }
+
+  .fab-main-icon {
+    position: relative;
+    bottom: 0.05em;
+    font-size: 1.7em;
+    color: white;
+  }
+
+  .count-down {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: white;
+  }
+}

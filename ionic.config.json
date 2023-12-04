@@ -1,6 +1,8 @@
 {
-  "name": "HongDouShang",
-  "integrations": {},
+  "name": "vouplan",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "id": "5d43dc66"
 }

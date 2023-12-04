@@ -1,0 +1,80 @@
+<ion-grid class='card-holder'>
+  <ion-row>
+    <ion-col>
+      <ion-grid class='main-card' no-padding>
+        <ion-row>
+          <ion-col>
+            <ion-textarea maxLength="150" class='response-input' [(ngModel)]='responseInput' placeholder="Description">
+            </ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row class='middle-row'>
+          <ion-col>
+            <ion-row>
+              <ion-col tappable (click)='toggleType()'>
+                <ion-icon class='arrow-left' name='arrow-dropleft'></ion-icon>
+              </ion-col>
+              <ion-col>
+                <ion-icon *ngIf="type === '+'" class='type-icon' name='add'></ion-icon>
+                <ion-icon *ngIf="type === '-'" class='type-icon' name='remove'></ion-icon>
+              </ion-col>
+              <ion-col tappable (click)='toggleType()'>
+                <ion-icon class='arrow-right' name='arrow-dropright'></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col>
+            <ion-input class='amount-input' type='number' [(ngModel)]='amountInput' (ngModelChange)='amountChanged()'
+              placeholder="Price" [attr.maxlength]='10'></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button [ngClass]="{'get-button': checkValid(), 'get-button-disabled': !checkValid()}"
+              (click)='sendChanges()' [disabled]='!checkValid() || needSpinner' ion-button no-margin>
+              <span class='get-button-text'>Send for approval</span>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class='second-card'>
+        <ion-row>
+          <ion-col class='second-text' col-9>Subtotal</ion-col>
+          <ion-col class='second-price'>{{subTotal}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class='second-text-bold' col-8>Price Changes</ion-col>
+          <ion-col class='second-price-bold'>{{type}} {{descriptionPrice}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf='packagingFee'>
+          <ion-col class='second-text' col-9>Packaging Fee</ion-col>
+          <ion-col class='second-price'>{{packagingFee}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf='hasServiceCharge'>
+          <ion-col class='second-text' col-9>Service Charge ({{serviceChargePercentage}}%)</ion-col>
+          <ion-col class='second-price'>{{serviceCharge}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf='hasTax'>
+          <ion-col class='second-text' col-9>Tax ({{taxPercentage}}% SST)</ion-col>
+          <ion-col class='second-price'>{{taxCharge}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="rounding.type === '+'">
+          <ion-col class='second-text' col-7>Rounding</ion-col>
+          <ion-col class='second-price'>+ {{rounding.value}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="rounding.type === '-'">
+          <ion-col class='second-text' col-7>Rounding</ion-col>
+          <ion-col class='second-price'>- {{rounding.value}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class='second-text-bold' col-6>Total</ion-col>
+          <ion-col class='second-price-bold'>{{totalPrice}}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<div tappable class='popover-background' (click)='close()'></div>

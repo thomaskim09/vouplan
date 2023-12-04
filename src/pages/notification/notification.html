@@ -1,0 +1,172 @@
+<ion-content overflow-scroll='true' class='master'>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Pull to check new item :)"></ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container *ngIf="categoryId === 'T'">
+    <ng-container *ngFor='let item of tableNotifications'>
+      <ion-grid class='card-grid'>
+        <ion-card class='notification-card' (click)='viewTableReason(item)'>
+          <ion-row>
+            <ion-col class='left-content'>
+              <div class="image-box" [ngStyle]="{'background-color': item.bgColor}">
+                <span class="image-text">{{item.char}}</span>
+              </div>
+            </ion-col>
+            <ion-col class='right-content'>
+              <ion-row>
+                <ion-col class='title' col-9>{{item.title}}</ion-col>
+                <ion-col class='time'>{{item.time}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class='text-content' [innerHTML]='item.body'></ion-col>
+                <ng-container *ngIf='item.reason'>
+                  <ion-col col-2>
+                    <ion-icon class='menu-more-icon' name='custom-menu-more'></ion-icon>
+                  </ion-col>
+                </ng-container>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf='!tableNotifications.length'>
+      <ion-grid class='hint-content'>
+        <ng-container *ngIf='tableLoadEmpty'>
+          <ion-row>
+            <ion-col class='main-hint-text' [innerHTML]="'No new tables notifications'"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='sub-hint-text'>Tables notifications will last for an hour.</ion-col>
+          </ion-row>
+        </ng-container>
+      </ion-grid>
+    </ng-container>
+
+  </ng-container>
+
+  <ng-container *ngIf="categoryId === 'R'">
+    <ion-grid class='toggle-grid'>
+      <ion-list>
+        <ion-item class='item-list'>
+          <ion-label class='item-text'>Filter Important</ion-label>
+          <ion-toggle (ionChange)="toggleReservation($event)" checked='true' [disabled]='disableToggle'></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+
+    <ng-container *ngFor='let item of reservationNotifications'>
+      <ion-grid class='card-grid'>
+        <ion-card tappable class='notification-card' (click)='viewReservationRemark(item._id)'>
+          <ion-row>
+            <ion-col class='left-content'>
+              <div class="image-box" [ngClass]="{'image-disabled': item.isGrey }"
+                [ngStyle]="{'background-color': item.bgColor}">
+                <span class="image-text">{{item.char}}</span>
+              </div>
+            </ion-col>
+            <ion-col class='right-content'>
+              <ion-row>
+                <ion-col class='title' [ngClass]="{'disabled': item.isGrey }" col-9>{{item.title}}</ion-col>
+                <ion-col class='time' [ngClass]="{'disabled': item.isGrey }">{{item.time}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class='text-content' [ngClass]="{'disabled': item.isGrey }" [innerHTML]='item.body'></ion-col>
+                <ng-container *ngIf="item.content.status === 'PD'">
+                  <ion-col tappable class='cross' (click)='rejectReservation(item)'>
+                    <ion-icon name='custom-cross'></ion-icon>
+                  </ion-col>
+                  <ion-col tappable class='tick' (click)='acceptReservation(item)'>
+                    <ion-icon name='custom-tick'></ion-icon>
+                  </ion-col>
+                </ng-container>
+                <ng-container *ngIf="item.content.status === 'AC'">
+                  <ion-col col-2 class='status-text status-tick'>
+                    <ion-icon name='custom-tick'></ion-icon>
+                  </ion-col>
+                </ng-container>
+                <ng-container *ngIf="item.content.status === 'RJ'">
+                  <ion-col col-2 class='status-text status-cross'>
+                    <ion-icon name='custom-cross'></ion-icon>
+                  </ion-col>
+                </ng-container>
+                <ng-container *ngIf="item.content.status === 'CC'">
+                  <ion-col col-2 class='status-text status-cancel'>
+                    <ion-icon name='custom-cancel'></ion-icon>
+                  </ion-col>
+                </ng-container>
+                <ng-container *ngIf="item.content.status === 'CT'">
+                  <ion-col col-2 class='status-text status-cancel'>
+                    <ion-icon name='custom-ticket-cancel'></ion-icon>
+                  </ion-col>
+                </ng-container>
+                <ng-container *ngIf="item.content.status === 'CL'">
+                  <ion-col col-2 class='status-text status-cancel'>
+                    <ion-icon name='custom-ticket-claim'></ion-icon>
+                  </ion-col>
+                </ng-container>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf='reservationNotifications.length === 0'>
+      <ion-grid class='hint-content'>
+        <ion-row *ngIf='reservationLoadEmpty'>
+          <ion-col class='main-hint-text' [innerHTML]="'No new reservations notifications'"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="categoryId === 'V'">
+    <ion-grid class='toggle-grid'>
+      <ion-list>
+        <ion-item class='item-list'>
+          <ion-label>Filter Important</ion-label>
+          <ion-toggle (ionChange)="toggleTicket($event)" checked='true' [disabled]='disableToggle'></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+
+    <ng-container *ngFor='let item of voucherNotifications'>
+      <ion-grid class='card-grid'>
+        <ion-card class='notification-card' (click)='viewTicketDetails(item._id)'>
+          <ion-row>
+            <ion-col class=' left-content'>
+              <div class="image-box" [ngClass]="{'image-disabled': item.isGrey }"
+                [ngStyle]="{'background-color': item.bgColor}">
+                <span class="image-text">{{item.char}}</span>
+              </div>
+            </ion-col>
+            <ion-col class='right-content'>
+              <ion-row>
+                <ion-col class='title' [ngClass]="{'disabled': item.isGrey }" col-9>{{item.title}}</ion-col>
+                <ion-col class='time' [ngClass]="{'disabled': item.isGrey }">{{item.time}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class='text-content' [ngClass]="{'disabled': item.isGrey }" [innerHTML]='item.body'></ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf='voucherNotifications.length === 0'>
+      <ion-grid class='hint-content'>
+        <ion-row *ngIf='voucherLoadEmpty'>
+          <ion-col class='main-hint-text' [innerHTML]="'No new voucher notifications'"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  </ng-container>
+
+  <div class='space'></div>
+
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-grid class='nav'>
+    <ion-row justify-content-center align-items-center>
+      <ion-col class='back-col' col-1>
+        <button (click)="back()" ion-button no-padding no-margin clear>
+          <ion-icon class="nav-icon back-icon" name="custom-back"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <ion-label class='header-title'>Notifications</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content overflow-scroll='true' class='master'>
+
+  <ng-container *ngIf="notifications">
+    <ng-container *ngFor='let item of notifications'>
+      <ion-grid class='card-grid'>
+        <ion-card class='notification-card'>
+          <ion-row>
+            <ion-col class='left-content'>
+              <div class="image-box" [ngStyle]="{'background-color': item.bgColor}">
+                <span class="image-text">{{item.char}}</span>
+              </div>
+            </ion-col>
+            <ion-col class='right-content'>
+              <ion-row>
+                <ion-col class='title' col-10>{{item.title}}</ion-col>
+                <ion-col class='time'>{{item.time}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class='text-content' [innerHTML]='item.body'></ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf='!notifications.length'>
+      <span class='image-box-center'>
+        <img src="../../assets/imgs/no-notification.png" class='center-image'>
+      </span>
+    </ng-container>
+
+    <ion-infinite-scroll [enabled]="needInfiniteScroll" (ionInfinite)="loadMore($event, categoryId)"
+      loadingSpinner="bubbles">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ng-container>
+
+</ion-content>

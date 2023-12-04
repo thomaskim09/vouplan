@@ -1,0 +1,106 @@
+page-reservation-setting {
+
+  * {
+    @include my-font();
+  }
+
+  .header-md::after {
+    background-image: none !important;
+  }
+
+  .nav {
+    padding: 0;
+    background-color: white;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .back-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .back-icon {
+    width: 1.5em;
+  }
+
+  .nav-icon {
+    font-size: 1.5em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .header-title {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .master {
+    background-color: $GREY_BODY_BACKGROUND;
+  }
+
+  // card content
+  .card {
+    border-radius: 0.5em;
+    padding: 0.5em;
+    width: 90%;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    @include card-no-shadow();
+  }
+
+  .reply-input {
+    background-color: $GREY_BODY_BACKGROUND;
+    border-radius: 0.5em;
+  }
+
+  .text-input-md {
+    height: 5em;
+    font-size: 1.2em;
+    padding: 0.7em 0.3em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+
+  // list card
+  .item-icon {
+    font-size: 1.2em;
+    color: $GREY_ICON_WHITE_DARKER;
+    margin: 0.3em 1em 0.3em 0.3em !important;
+  }
+
+  .item-label-toggle {
+    margin: 0.3em 1em 0.3em 0.3em !important;
+  }
+
+  .line {
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .item-label {
+    margin: 0.3em;
+  }
+
+  .text-hint2 {
+    color: $GREY_TEXT_WHITE;
+    margin-left: 0.25em;
+  }
+
+  .button-col {
+    text-align: right;
+  }
+
+  .button-text {
+    font-size: 1em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .reply-button {
+    color: white;
+    border-radius: 15em;
+    @include my-gradient($GRADIENT_TOP, $GRADIENT_BOTTOM);
+    @include my-img-shadow-blur();
+  }
+
+}

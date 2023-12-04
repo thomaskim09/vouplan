@@ -1,0 +1,92 @@
+<ion-grid no-padding>
+  <ion-row>
+    <ion-col class='middle-tab'>
+      <ion-row>
+        <ion-col tappable (click)='toggleList()' text-center no-padding>
+          <ion-icon class='list-caret-up' name='custom-caret' *ngIf='!itemOpened'></ion-icon>
+          <ion-icon class='list-caret-down' name='custom-caret-down' *ngIf='itemOpened'></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ng-container *ngIf='orderCon'>
+        <div *ngIf='itemOpened' class='orderInfo'>
+          <ion-list>
+            <ion-item>
+              <span class='sub-item-text'>Subtotal</span>
+              <span class='sub-item-price'>RM {{subTotal}}</span>
+            </ion-item>
+            <ng-container *ngIf="takeAwayCounter > 0">
+              <ion-item *ngIf='menu.td.hasTakeAway && menu.td.hasTakeAwayFee'>
+                <span class='sub-item-text' *ngIf="!menu.td.hasTakeAwayPerPackage">Packaging Fee</span>
+                <span class='sub-item-text' *ngIf="menu.td.hasTakeAwayPerPackage">Packaging Fee ({{takeAwayCounter}}
+                  Item<span *ngIf='takeAwayCounter > 1'>s</span>)</span>
+                <span class='sub-item-price'>RM {{packagingFee}}</span>
+              </ion-item>
+            </ng-container>
+            <ion-item *ngIf='menu.td.hasServiceCharge'>
+              <span class='sub-item-text'>Service Charge ({{menu.td.serviceChargePercentage}}%)</span>
+              <span class='sub-item-price'>RM {{serviceCharge}}</span>
+            </ion-item>
+            <ion-item *ngIf='menu.td.hasTax'>
+              <span class='sub-item-text'>Tax ({{menu.td.taxPercentage}}% SST)</span>
+              <span class='sub-item-price'>RM {{taxCharge}}</span>
+            </ion-item>
+            <ion-item *ngIf="rounding.type === '+'">
+              <span class='sub-item-text'>Rounding Adjustment</span>
+              <span class='sub-item-price'>+ RM {{rounding.value}}</span>
+            </ion-item>
+            <ion-item *ngIf="rounding.type === '-'">
+              <span class='sub-item-text'>Rounding Adjustment</span>
+              <span class='sub-item-price'>- RM {{rounding.value}}</span>
+            </ion-item>
+            <ion-item>
+              <span class='main-sub-item-text'>Total</span>
+              <span class='main-sub-item-price'>RM {{totalPrice}}</span>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ng-container>
+    </ion-col>
+  </ion-row>
+  <ion-row class='bottom-tab' justify-content-center align-items-center>
+    <ng-container *ngIf='status'>
+      <ng-container *ngIf="status === 'PC' || status === 'PA'">
+        <ion-col text-center>
+          <ion-icon tappable class='cross-icon' (click)='cancelOrder()' name='custom-cross-thin'></ion-icon>
+        </ion-col>
+      </ng-container>
+      <ng-container *ngIf="status === 'CF' || status === 'AC' || status === 'RJ' || status === 'UC'">
+        <ion-col text-center>
+          <ion-icon tappable class='delete-icon' (click)='closeOrder()' name='custom-delete'></ion-icon>
+        </ion-col>
+      </ng-container>
+      <ng-container *ngIf="status === 'PC'">
+        <ion-col text-center>
+          <ion-icon tappable class='edit-icon' (click)='presentResponse()' name='custom-edit'></ion-icon>
+        </ion-col>
+      </ng-container>
+      <ng-container *ngIf="status === 'PC'|| status === 'CF' || status === 'AC'">
+        <ion-col text-center>
+          <button [ngClass]="{'get-button': (status === 'PC'), 'done-button': (status !== 'PC')}"
+            (click)='confirmOrder()' [disabled]='needSpinner' ion-button no-margin>
+            <ng-container *ngIf='!needSpinner'>
+              <ion-icon class='tick-icon' name='custom-tick'></ion-icon>
+              <span class='get-button-text'>{{getButtonStatusText(status)}}</span>
+            </ng-container>
+            <ng-container *ngIf='needSpinner'>
+              <ion-spinner></ion-spinner>
+            </ng-container>
+          </button>
+        </ion-col>
+      </ng-container>
+      <ng-container *ngIf="status !== 'PC' && status !== 'CF' && status !== 'AC'">
+        <ion-col text-center>
+          <span class='status-text' [innerHTML]=" getStatusText(status)"></span>
+        </ion-col>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf='!status'>
+      <ion-col class='main-item-text'>Total Price</ion-col>
+      <ion-col class='main-item-price'>{{getTotalPrice()}}</ion-col>
+    </ng-container>
+  </ion-row>
+</ion-grid>

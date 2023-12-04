@@ -1,14 +1,17 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content overflow-scroll='true'>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-tabs class='tabs' tabsPlacement='bottom'>
+    <ion-tab class='tab' [root]="pages[0].pageName" [tabIcon]="pages[0].icon" [tabBadge]="homeTabBadge"
+      tabBadgeStyle="danger" (ionSelect)="removeHomeBadge()"></ion-tab>
+    <ng-container *ngIf='hasMenu && isFullFeature'>
+      <span *ngIf='orderStatusCounter !== 0' class='order-notification-badge'>{{ orderStatusCounter }}</span>
+      <ion-tab class='tab' [root]="pages[1].pageName" [tabIcon]="pages[1].icon" [tabBadge]="orderTabBadge"
+        tabBadgeStyle="danger" (ionSelect)="readOrder()"></ion-tab>
+    </ng-container>
+    <ng-container *ngIf='isWaited'>
+      <ion-tab class='tab' [root]="pages[2].pageName" [tabIcon]="pages[2].icon" [tabBadge]="feedbackTabBadge"
+        tabBadgeStyle="danger" (ionSelect)="readFeedback()"></ion-tab>
+    </ng-container>
+  </ion-tabs>
+
 </ion-content>

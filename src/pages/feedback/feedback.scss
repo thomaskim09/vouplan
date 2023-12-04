@@ -1,0 +1,157 @@
+page-feedback {
+
+  * {
+    @include my-font();
+  }
+
+  .header-md::after {
+    background-image: none !important;
+  }
+
+  .nav {
+    background-color: white;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .header-title {
+    padding-left: 0.4em;
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .master {
+    background-color: $GREY_BODY_BACKGROUND;
+  }
+
+  .scroll-content {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+  }
+
+  // Feedback card
+  .card-grid {
+    padding-left: 2em;
+    padding-right: 2.8em;
+  }
+
+  .notification-card {
+    width: 100%;
+    height: auto;
+    float: right;
+    border-radius: 0.5em;
+    margin: 0 1em 0 1em;
+    z-index: 1;
+    overflow: visible;
+    @include card-no-shadow();
+  }
+
+  .left-content {
+    max-width: 2.5em;
+    padding-top: 0.7em;
+  }
+
+  .image-box {
+    position: absolute;
+    left: -2em;
+    text-align: center;
+    width: 4.5em;
+    height: 4.5em;
+    border-radius: 2.5em;
+    @include my-img-shadow();
+  }
+
+  .image-text {
+    position: relative;
+    top: 0.32em;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+  }
+
+  .right-content {
+    height: 6em;
+    padding-top: 0.5em;
+  }
+
+  .title {
+    font-size: 1.1em;
+    color: $GREY_TEXT_WHITE_DARKER;
+    width: 5em;
+    @include text-truncate();
+  }
+
+  .rating {
+    padding-left: 0.5em;
+    position: relative;
+    top: 0.15em;
+  }
+
+  .rating-icon {
+    @include my-gradient($GRADIENT_TOP, $GRADIENT_BOTTOM);
+    position: relative;
+    top: -0.05em;
+    left: 0.1em;
+    font-size: 0.9em;
+  }
+
+  .rating-value {
+    color: $GRADIENT_BOTTOM;
+    font-weight: 400;
+    position: relative;
+    top: -0.12em;
+    left: 0.1em;
+  }
+
+  .time {
+    font-size: 1em;
+    color: $GREY_TEXT_WHITE_DARKER;
+    text-align: right;
+    padding-top: 0.5em;
+    padding-right: 1em;
+    @include text-truncate();
+  }
+
+  .text-content {
+    height: 2em;
+    font-weight: 400;
+    font-size: 1.2em;
+    padding-top: 0.7em;
+    padding-left: 0.4em;
+    padding-bottom: 0em;
+    max-width: 100%;
+    @include text-truncate-line(1);
+  }
+
+  .reply-button {
+    position: absolute;
+    right: 0.6em;
+    bottom: -0.3em;
+    border-radius: 15em;
+    height: 2.3em;
+    @include my-gradient($GRADIENT_TOP, $GRADIENT_BOTTOM);
+    @include my-img-shadow-blur();
+  }
+
+  .status-text {
+    color: $GREY_ICON_WHITE;
+  }
+
+  .status-tick {
+    font-size: 1.2em;
+    padding-top: 0.8em;
+    padding-left: 1.6em;
+  }
+
+  // center image
+  .image-box-center {
+    width: 100%;
+    height: 100%;
+  }
+
+  .center-image {
+    position: relative;
+    top: 5em;
+    display: block;
+    margin: 0 auto;
+  }
+}

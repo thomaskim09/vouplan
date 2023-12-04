@@ -1,0 +1,142 @@
+page-order-response {
+
+  .card-holder {
+    position: absolute;
+    top: 7%;
+    margin-left: 13%;
+    width: 73%;
+  }
+
+  .main-card {
+    padding: 1.2em !important;
+    border-radius: 0.5em;
+    background-color: white;
+    position: relative;
+    height: 20em;
+    margin-bottom: 0.5em;
+    z-index: 3;
+  }
+
+  textarea.text-input {
+    height: 7.5em;
+    font-size: 1.3em;
+    padding: 0.7em 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .response-input {
+    background-color: $GREY_BODY_BACKGROUND;
+    border-radius: 0.5em;
+  }
+
+  .middle-row {
+    margin-top: 0.5em;
+  }
+
+  .arrow-left {
+    font-size: 3.5em;
+    color: $GREY_ICON_WHITE;
+    position: relative;
+    left: 0.3em;
+    top: -0.05em;
+  }
+
+  .arrow-right {
+    font-size: 3.5em;
+    color: $GREY_ICON_WHITE;
+    position: relative;
+    top: -0.05em;
+    left: 0.05em;
+  }
+
+  .type-icon {
+    font-size: 2.5em;
+    position: relative;
+    top: 0.1em;
+    left: 0.1em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .amount-input .text-input-md {
+    text-align: right;
+    padding-right: 0.5em;
+  }
+
+  .amount-input {
+    font-size: 1.4em;
+    background-color: $GREY_BODY_BACKGROUND;
+    border-radius: 0.5em;
+  }
+
+  .get-button {
+    border-radius: 15em;
+    height: 3em;
+    width: 100%;
+    @include my-img-shadow-blur();
+  }
+
+  .get-button-disabled {
+    border-radius: 15em;
+    height: 3em;
+    width: 100%;
+    color: $GREY_TEXT_GREY;
+    background-color: $GREY_ICON_WHITE;
+    @include card-no-shadow();
+  }
+
+  .get-button-text {
+    font-size: 1.5em;
+    font-weight: 400;
+    padding-top: 1em;
+    padding-bottom: 1.1em;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    text-transform: capitalize;
+  }
+
+  // Second card
+  .second-card {
+    padding: 1.2em !important;
+    border-radius: 0.5em;
+    background-color: white;
+    position: relative;
+    height: auto;
+    z-index: 3;
+  }
+
+  .second-text {
+    font-size: 1.1em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .second-price {
+    font-size: 1.1em;
+    text-align: right;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .second-price-bold {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: right;
+    color: $GREY_TEXT_WHITE_DARKER;
+  }
+
+  .second-text-bold {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: $GREY_TEXT_WHITE_DARKER;
+  }
+
+  .popover-background {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    @media(min-width: 766px) {
+      display: none;
+      background: none;
+    }
+  }
+}

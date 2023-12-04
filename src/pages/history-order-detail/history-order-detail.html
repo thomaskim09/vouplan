@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-grid class='nav'>
+    <ion-row justify-content-center align-items-center>
+      <ion-col col-1>
+        <button (click)='back()' ion-button no-padding no-margin clear>
+          <ion-icon class='nav-icon' name='custom-back'></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <ion-label class='header-title'>{{title}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content overflow-scroll='true' class='master'>
+  <confirm-order-main [menu]='menu' [orderContent]='orderContent' [responseDetails]='responseDetails'>
+  </confirm-order-main>
+</ion-content>
+
+<ion-footer>
+  <confirm-order-button [menu]='menu' [orderContent]='orderContent'></confirm-order-button>
+</ion-footer>

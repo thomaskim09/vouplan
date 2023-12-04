@@ -1,0 +1,158 @@
+page-ticket {
+
+  * {
+    @include my-font();
+  }
+
+  .header-md::after {
+    background-image: none !important;
+  }
+
+  .nav {
+    padding: 0;
+    background-color: white;
+    border-bottom: 1px solid $GREY_BORDER_LINE;
+  }
+
+  .back-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .back-icon {
+    width: 1.5em;
+  }
+
+  .nav-icon {
+    font-size: 1.5em;
+    color: $GREY_ICON_WHITE_DARKER;
+  }
+
+  .header-title {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .master {
+    background-color: $GREY_BODY_BACKGROUND;
+  }
+
+  // Main control
+  .main-card {
+    border-radius: 0.5em;
+    padding: 0.8em;
+    width: 90%;
+    margin: 0.7em auto 0.7em auto;
+    @include card-no-shadow();
+  }
+
+  .main-text {
+    font-size: 1.3em;
+    font-weight: 400;
+  }
+
+  // Claim Detail
+  .claim-title {
+    font-size: 1.3em;
+    font-weight: 400;
+    padding-bottom: 0.1em;
+  }
+
+  .claim-content {
+    font-size: 1em;
+    color: $GREY_TEXT_WHITE_DARKER;
+    padding-left: 1.5em;
+  }
+
+  .claim-content-row {
+    padding-bottom: 0.3em;
+  }
+
+
+  // Quantity control
+  .control-card {
+    border-radius: 0.5em;
+    padding: 0.6em;
+    width: 90%;
+    margin: 0.7em auto 0.7em auto;
+    @include card-no-shadow();
+  }
+
+  .control-button {
+    width: 7em;
+    height: 2.4em;
+  }
+
+  .subtract-box {
+    border-right: 1px solid $GREY_BORDER_LINE;
+    font-size: 0.8em;
+  }
+
+  .button-text {
+    font-size: 1.5em;
+    color: $GRADIENT_TOP;
+  }
+
+  .quantity-text {
+    font-size: 1.4em;
+    font-weight: 400;
+    margin: auto;
+  }
+
+  .add-box {
+    border-left: 1px solid $GREY_BORDER_LINE;
+  }
+
+  // Space
+  .space {
+    height: 5em;
+  }
+
+  // Not found text
+  .not-found-box {
+    text-align: center;
+    margin-top: 60%;
+  }
+
+  .not-found {
+    color: $GREY_ICON_WHITE;
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+
+  // button {
+  .button-grid {
+    position: fixed;
+    bottom: 0;
+  }
+
+  .bottom-tab {
+    background-color: white;
+    min-height: 4.4em;
+    max-height: 4.4em;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .getButton {
+    border-radius: 15em;
+    margin-bottom: -0.4em;
+    margin-left: 2.5%;
+    height: 3.2em;
+    width: 94%;
+    @include my-img-shadow-blur();
+  }
+
+  .getButtonText {
+    font-size: 1.8em;
+    font-weight: 400;
+    padding-top: 1em;
+    padding-bottom: 1.1em;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    text-transform: capitalize;
+  }
+
+}

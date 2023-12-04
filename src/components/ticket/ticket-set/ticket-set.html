@@ -1,0 +1,56 @@
+<ng-container *ngIf="ticketSet">
+  <ng-container *ngIf="ticketSet.setDetails">
+    <ion-card class="card">
+      <ng-container *ngFor="let detail of ticketSet.setDetails; let i = index">
+        <ng-container *ngIf="itemOpened ? i < 5 : i < 1">
+          <ion-row>
+            <ion-col class="title" [innerHTML]='detail.setTitle'></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="content">
+              <ion-row class="content-row" *ngFor="let content of detail.setContent">
+                <ion-col col-6 no-padding [innerHTML]='content.setName'></ion-col>
+                <ion-col id="setUnit" no-padding>({{ content.setUnit }} units)</ion-col>
+                <ion-col id="setPrice" no-padding>RM {{ content.setPrice }}</ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf='ticketSet.setDetails.length > 1'>
+        <ion-row>
+          <ion-col tappable (click)="toggleSection(i)" text-center no-padding>
+            <span *ngIf="!itemOpened" class="show-more">
+              show more
+              <ion-icon id="caret-icon-down" name="custom-caret-down"></ion-icon>
+            </span>
+            <span *ngIf="itemOpened" class="show-more">
+              hide
+              <ion-icon id="caret-icon-down" name="custom-caret"></ion-icon>
+            </span>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+    </ion-card>
+  </ng-container>
+
+  <ng-container *ngIf="!ticketSet.setDetails">
+    <ion-card class="card">
+      <ion-row>
+        <ion-col class="skeleton-title"></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="skeleton-content">
+          <ion-row class="content-row">
+            <ion-col class="skeleton-content-col" no-padding></ion-col>
+            <ion-col class="skeleton-content-col2" no-padding></ion-col>
+          </ion-row>
+          <ion-row class="content-row">
+            <ion-col class="skeleton-content-col" no-padding></ion-col>
+            <ion-col class="skeleton-content-col2" no-padding></ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ng-container>
+</ng-container>

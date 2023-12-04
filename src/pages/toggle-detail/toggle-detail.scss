@@ -1,0 +1,39 @@
+page-toggle-detail {
+
+  .master {
+    background-color: $GREY_BODY_BACKGROUND;
+  }
+
+  .scroll-content {
+    padding-top: 0.8em;
+  }
+
+  .header-text {
+    font-size: 1.2em;
+    margin: 0.7em 0em 0em 1em;
+    color: $GREY_TEXT_GREY;
+  }
+
+  .card-grid {
+    background-color: white;
+    border-radius: 0.5em;
+    width: 93%;
+    padding: 0.5em 1.5em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+
+  .list-md {
+    margin: 0;
+  }
+
+  .item-list {
+    padding: 0;
+  }
+
+  .item-inner {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+}

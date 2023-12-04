@@ -1,0 +1,152 @@
+<ion-header>
+
+  <ion-grid class='nav'>
+    <ion-row justify-content-center align-items-center>
+      <ion-col class='back-col' col-1>
+        <button (click)="back()" ion-button no-padding no-margin clear>
+          <ion-icon class="nav-icon back-icon" name="custom-back"></ion-icon>
+        </button>
+      </ion-col>
+      <ng-container>
+        <ion-col>
+          <ion-label class='header-title'>{{title}}</ion-label>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+
+</ion-header>
+
+<ion-content overflow-scroll='true' class='master'>
+
+  <ng-container *ngIf='input'>
+    <ion-card class='main-card'>
+      <ion-row>
+        <ion-col class='main-text' [innerHTML]='mainText'></ion-col>
+      </ion-row>
+    </ion-card>
+
+    <ng-container *ngIf='isVoucher'>
+
+      <ng-container *ngIf="voucherType === 'SV'">
+        <ticket-set [ticketSet]="ticketSet"></ticket-set>
+      </ng-container>
+
+      <ng-container *ngIf="voucherType === 'CV'">
+        <ticket-cash [ticketCash]="ticketCash"></ticket-cash>
+      </ng-container>
+
+      <ng-container *ngIf="voucherType === 'QV'">
+        <ticket-quantity [ticketQuantity]="ticketQuantity"></ticket-quantity>
+      </ng-container>
+
+      <ng-container *ngIf="voucherType === 'MV'">
+        <ticket-monthly [ticketMonthly]="ticketMonthly"></ticket-monthly>
+      </ng-container>
+
+      <ion-card class='main-card'>
+        <ion-row>
+          <ion-col class='claim-title'>Claim Details</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class='claim-content'>
+            <ion-row class='claim-content-row'>
+              <ion-col col-5 no-padding>Voucher Type: </ion-col>
+              <ion-col no-padding>{{voucherTypeText}}</ion-col>
+            </ion-row>
+            <ng-container *ngIf="voucherType !== 'MV'">
+              <ion-row class='claim-content-row'>
+                <ion-col col-5 no-padding>Total Unit: </ion-col>
+                <ion-col no-padding>{{quantityLeftText}}</ion-col>
+              </ion-row>
+            </ng-container>
+            <ion-row class='claim-content-row'>
+              <ion-col col-5 no-padding>Claimed: </ion-col>
+              <ion-col no-padding>{{input.claimed}} unit</ion-col>
+            </ion-row>
+            <ng-container *ngIf="voucherType !== 'MV'">
+              <ion-row class='claim-content-row'>
+                <ion-col col-5 no-padding>Left: </ion-col>
+                <ion-col no-padding>{{quantityLeft}} unit</ion-col>
+              </ion-row>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <ng-container *ngIf="quantityLeft > 1">
+        <ion-card class='control-card'>
+          <ion-row>
+            <ion-col class='subtract-box' text-center no-padding>
+              <button class='control-button' (click)='subtractQuantity()' ion-button clear no-padding no-margin>
+                <ion-icon class='button-text' name='custom-minus-thin'></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col class='quantity-text' text-center no-padding>{{ quantity }}</ion-col>
+            <ion-col class='add-box' text-center no-padding>
+              <button class='control-button' (click)='addQuantity()' ion-button clear no-padding no-margin>
+                <ion-icon class='button-text' name='custom-plus-thin'></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ng-container>
+
+      <ticket-purchase [ticketPurchase]="ticketPurchase"></ticket-purchase>
+
+      <ng-container *ngIf='input.claimTime'>
+        <ion-card class='main-card'>
+          <ion-row>
+            <ion-col class='claim-title'>Claim History</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='claim-content'>
+              <ng-container *ngFor='let item of input.claimTime'>
+                <ion-row class='claim-content-row'>
+                  <ion-col col-5 no-padding>{{item.quantity}} unit</ion-col>
+                  <ion-col no-padding>{{getDate(item.time)}}</ion-col>
+                </ion-row>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ng-container>
+
+      <div class='space'></div>
+    </ng-container>
+
+    <ng-container *ngIf='!isVoucher'>
+      <ticket-reservation [ticketReservation]="ticketReservation"></ticket-reservation>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf='!input'>
+    <ion-row>
+      <ion-col class='not-found-box'>
+        <span class='not-found' [innerHTML]='notFoundTitle'></span>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+
+</ion-content>
+
+<ng-container *ngIf='input'>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-grid class='button-grid' no-padding>
+        <ion-row class='bottom-tab' justify-content-center align-items-center>
+          <ion-col no-padding>
+            <button class='getButton' (click)='confirm()' [disabled]='needSpinner || !canClaim' ion-button no-margin>
+              <ng-container *ngIf='!needSpinner'>
+                <span class='getButtonText'>{{buttonText}}</span>
+              </ng-container>
+              <ng-container *ngIf='needSpinner'>
+                <ion-spinner></ion-spinner>
+              </ng-container>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>
+</ng-container>
